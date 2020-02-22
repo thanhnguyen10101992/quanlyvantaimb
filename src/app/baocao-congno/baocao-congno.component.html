@@ -1,0 +1,230 @@
+<div class="main-content">
+    <div class="d-flex flex-row manager-content">
+        <div class="mr-auto col-sm-6">
+            <h1 class="manager-title">Báo Cáo Công Nợ</h1>
+
+        </div>
+    </div>
+    <div class="row manager-select">
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Tên Xe
+            </label>
+            <div class="col-sm-8">
+                <select
+                    class="form-control"
+                    id="exampleSelect1"
+                    name="tenxe"
+                    [(ngModel)]="tenxe"
+                    (ngModelChange)="getdsxetc($event)"
+                >
+                    <option
+                        *ngFor="let xe of mangxe"
+                        [ngValue]="xe"
+                    >
+                        {{xe.tenxe}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-sm-6 manager-find">
+            <label
+                class="control-label text-center col-sm-4 mt-4"
+                for="tenxe"
+            >
+                
+            </label>
+            <button
+                type="button"
+                class="btn btn-primary col-sm-2 pull-left control-label text-center col-sm-3 mt-3"
+                (click)="inhoadonhh()"
+            >
+                In Hóa Đơn
+            </button>
+        </div>
+    </div>
+    
+    <div class="row manager-select">
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenkh"
+            >
+                Nhập Chuyến Xe
+            </label>
+            <div class="col-sm-8">
+                <input
+                    role="button"
+                    data-toggle="dropdown"
+                    type="text"
+                    class="form-control dropdown-toggle"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    id="mcx"
+                    name="mcx"
+                    [(ngModel)]="mcx"
+                    (keyup)="getmcx($event)"
+                >
+                <label
+                    class="dropdown-menu dropdown-menu-select dropdown-menu-right"
+                    x-placement="bottom-start"
+                >
+                    <a
+                        class="dropdown-item"
+                        *ngFor="let cx of mangcx"
+                        (click)="selectHHKH(cx)"
+                    >
+                        {{cx.mcx}}
+                    </a>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row manager-select">
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenkh"
+            >
+                Nhập Khách Hàng
+            </label>
+            <div class="col-sm-8">
+                <input
+                    role="button"
+                    data-toggle="dropdown"
+                    type="text"
+                    class="form-control dropdown-toggle"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    id="tenkh"
+                    name="tenkh"
+                    [(ngModel)]="tenkh"
+                    (keyup)="gettenkh($event)"
+                >
+                <label
+                    class="dropdown-menu dropdown-menu-select dropdown-menu-right"
+                    x-placement="bottom-start"
+                >
+                    <a
+                        class="dropdown-item"
+                        *ngFor="let kh of mangkh"
+                        (click)="chonkhmd(kh)"
+                    >
+                        {{kh.tenkh}}
+                    </a>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row manager-select">
+        
+    </div>
+    <div class="row manager-select">
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tcppsctt"
+            >
+                Nhập Tổng CPPS
+            </label>
+            <div class="col-sm-8">
+                <input
+                    role="button"
+                    data-toggle="dropdown"
+                    type="number"
+                    class="form-control dropdown-toggle"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    id="tcppsctt"
+                    name="tcppsctt"
+                    [(ngModel)]="tcppsctt"
+                >
+                <span>{{tcppsctt | number :".0"}}</span>
+            </div>
+        </div>
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tcppsctt"
+            >
+                Miêu tả CPPS
+            </label>
+            <div class="col-sm-8">
+                <input
+                    role="button"
+                    data-toggle="dropdown"
+                    type="text"
+                    class="form-control dropdown-toggle"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    id="mtcppsc"
+                    name="mtcppsc"
+                    [(ngModel)]="mtcppsc"
+                >
+            </div>
+        </div>
+    </div>
+    <div class="row manager-select">
+        <div class="form-group col-sm-6 manager-find">
+            <label
+                class="control-label text-center col-sm-4 mt-4"
+                for="tenxe"
+            >
+                
+            </label>
+            <button
+                type="button"
+                class="btn btn-primary col-sm-2 pull-left control-label text-center col-sm-3 mt-3"
+                (click)="tongthanhtoan()"
+            >
+                Thanh Toán
+            </button>
+        </div>
+    </div>
+    <div
+        class="row"
+        id="contenthh" #contenthh
+    >
+        <div style="padding-left: 20px">
+            <label>
+                <strong>Tổng cộng:</strong>
+            </label>
+            <span class="text-danger font-weight-bold">{{tongtien | number :".0"}} VND</span>
+            
+        </div>
+        <table class="table table-bordered table-manager">
+            <thead>
+                <tr>
+                    <th>Mã Chuyến Xe</th>
+                    <th>Khách Hàng</th>
+                    <th>Tên Hàng Hóa</th>
+                    <th>Nội Dung Hàng Hóa</th>
+                    <th>Kích Thước/ Cân Nặng</th>
+                    <th>Giá/ Phí</th>
+                    <th>Tổng Tiền</th>
+                    <th>Tình Trạng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hh of manghanghoa">
+                    <td><span *ngIf="hh.idcx">{{hh.idcx.mcx}}</span></td>
+                    <td><span *ngIf="hh.idkh">{{hh.idkh.tenkh}}</span></td>
+                    <td>{{hh.tenhang}}</td>
+                    <td>{{hh.noidunghh}}</td>
+                    <td>{{hh.ktcn}}</td>
+                    <td>{{hh.giaphi | number :".0"}} VND</td>
+                    <td>{{hh.tongtien | number :".0"}} VND</td>
+                    <td>
+                        {{ hh.tinhtrang ?"Đã Thanh Toán":"Chưa Thanh Toán" }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+   
+</div>

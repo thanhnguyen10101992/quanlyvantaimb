@@ -1,0 +1,312 @@
+<!-- Fixed navbar -->
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="navbar-header">
+        <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-controls="navbar"
+        >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a
+            class="navbar-brand"
+            *ngIf="!authService.isLoggedIn()"
+            routerLink="login"
+        >
+            Quản Lý Vận Tải
+        </a>
+        <a
+            class="navbar-brand"
+            *ngIf="authService.isLoggedIn()"
+            routerLink="report"
+        >
+            Quản Lý Vận Tải
+        </a>
+    </div>
+    <div
+        id="navbar"
+        class="collapse navbar-collapse"
+    >
+        <ul
+            class="navbar-nav mr-auto"
+            *ngIf="authService.isLoggedIn()"
+        >
+        </ul>
+        <ul class="nav navbar-nav navbar-right navbar-login">
+            <li *ngIf="!authService.isLoggedIn()">
+                <a
+                    routerLink="login"
+                    routerLinkActive="active"
+                >
+                    Log In
+                </a>
+
+            </li>
+            <li *ngIf="!authService.isLoggedIn()">
+                <a [routerLink]="['/register']">Register</a>
+
+            </li>
+
+            <li *ngIf="authService.isLoggedIn()">
+
+                <!-- <div class="dropdown"> -->
+                <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Welcome {{ authService.currentUser.firstname }} -->
+                <!-- <span class="caret"></span></button> -->
+                <!-- <ul class="dropdown-menu"> -->
+                <!-- <li routerLink="profile">My Profile</li> -->
+                <!-- <li routerLink="password">Change Password</li> -->
+                <!-- <li routerLink="logout">Logout</li> -->
+                <!-- </ul> -->
+                <!-- </div> -->
+
+                <ul class="menu">
+                    <li>
+                        Welcome {{ authService.currentUser.firstname }}
+                        <span class="caret"></span>
+                        <ul>
+                            <li routerLink="profile">My Profile</li>
+
+                            <li routerLink="password">Change Password</li>
+
+                            <li routerLink="logout">Logout</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div
+    #leftbarNavDropdown
+    class="p-0 workspace-sidebar navbar-dark bg-light width"
+    id="leftbarNavDropdown"
+    data-parent="body"
+    *ngIf="authService.isLoggedIn()"
+>
+    <div class="workspace-sidebar-wrapper">
+        <ul class="navbar-nav mr-auto flex-column clmnmb">
+            <li class="nav-item active">
+                <a
+                    class="nav-link font-weight-bold py-3"
+                    routerLink="xe"
+                    routerLinkActive="active"
+                >
+                    Quản Lý Xe
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="taixe"
+                    routerLinkActive="active"
+                >
+                    Quản Lý Tài xế
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="chuyenxe"
+                    routerLinkActive="active"
+                >
+                    Chuyến Xe
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="hanghoa"
+                    routerLinkActive="active"
+                >
+                    Hàng Hóa
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="khachhang"
+                    routerLinkActive="active"
+                >
+                    Khách Hàng
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    routerLink="thuchi"
+                    routerLinkActive="active"
+                >
+                    Thu Chi
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                >
+                    Báo Cáo
+                </a>
+                <div x-placement="bottom-start">
+                    <a
+                        routerLink="baocaohanghoa"
+                        class="dropdown-item"
+                        routerLinkActive="active"
+                    >
+                        Báo Cáo Hàng Hóa
+                    </a>
+                    <a
+                        class="dropdown-item"
+                        routerLink="baocaocongno"
+                        routerLinkActive="active"
+                    >
+                        Báo Cáo Công Nợ
+                    </a>
+                    <a
+                        class="dropdown-item"
+                        routerLink="baocaothuchi"
+                        routerLinkActive="active"
+                    >
+                        Báo Cáo Thu Chi
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div>
+    <div class="mnmbwr">
+            <ul class="nav navbar-nav navbar-right navbar-login lumb">
+                    <li *ngIf="!authService.isLoggedIn()">
+                        <a
+                            routerLink="login"
+                            routerLinkActive="active"
+                        >
+                            Log In
+                        </a>
+        
+                    </li>
+                    <li *ngIf="!authService.isLoggedIn()">
+                        <a [routerLink]="['/register']">Register</a>
+        
+                    </li>
+        
+                    <li *ngIf="authService.isLoggedIn()">
+        
+                        <!-- <div class="dropdown"> -->
+                        <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Welcome {{ authService.currentUser.firstname }} -->
+                        <!-- <span class="caret"></span></button> -->
+                        <!-- <ul class="dropdown-menu"> -->
+                        <!-- <li routerLink="profile">My Profile</li> -->
+                        <!-- <li routerLink="password">Change Password</li> -->
+                        <!-- <li routerLink="logout">Logout</li> -->
+                        <!-- </ul> -->
+                        <!-- </div> -->
+        
+                        <ul class="menu menumb">
+                            <li>
+                                Welcome {{ authService.currentUser.firstname }}
+                                <span class="caret"></span>
+                                <ul>
+                                    <li routerLink="profile">My Profile</li>
+        
+                                    <li routerLink="password">Change Password</li>
+        
+                                    <li routerLink="logout">Logout</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        <div class="mbelfl" *ngIf="authService.isLoggedIn()">
+            <ul>
+                <li>
+                    <a 
+                    routerLink="xe"
+                    routerLinkActive="active"
+                    >
+                    Quản Lý Xe
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="taixe"
+                    routerLinkActive="active"
+                    >
+                    Quản Lý Tài xế
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="chuyenxe"
+                    routerLinkActive="active"
+                    >
+                    Chuyến Xe
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="hanghoa"
+                    routerLinkActive="active"
+                    >
+                    Hàng Hóa
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="khachhang"
+                    routerLinkActive="active"
+                    >
+                    Khách Hàng
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="thuchi"
+                    routerLinkActive="active"
+                    >
+                    Thu Chi
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="baocaohanghoa"
+                    routerLinkActive="active"
+                    >
+                    Báo Cáo Hàng Hóa
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="baocaocongno"
+                    routerLinkActive="active"
+                    >
+                    Báo Cáo Công Nợ
+                    </a>
+                </li>
+                <li>
+                    <a 
+                    routerLink="baocaothuchi"
+                    routerLinkActive="active"
+                    >
+                    Báo Cáo Thu Chi
+                    </a>
+                </li>
+            </ul>
+            <div class="clear"> </div>
+        </div>  
+    </div>
+</div>
+
+<router-outlet></router-outlet>

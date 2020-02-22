@@ -1,0 +1,257 @@
+<div class="main-content">
+    <div class="d-flex flex-row manager-content">
+        <div class="mr-auto col-sm-8">
+            <h1 class="manager-title">Quản Lý Tài Xế</h1>
+            <form
+                class="form-horizontal"
+                #formCreateThuoc="ngForm"
+            >
+                <div class="form-group">
+                    <label
+                        class="control-label text-left col-sm-3"
+                        for="ttx"
+                    >
+                        Tên Tài Xế
+                    </label>
+                    <div class="col-sm-9">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="ttx"
+                            name="ttx"
+                            placeholder="Nhập Tên Tài Xế"
+                            [(ngModel)]="ttx"
+                            (keyup)="getttx($event)"
+                        >
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="ml-auto">
+            <form class="form-inline justify-content-end">
+                <button
+                    data-toggle="modal"
+                    data-target="#loaiphong"
+                    class="btn btn-lg btn-link btn-fontsize"
+                    (click)="goToEdit(false)"
+                >
+                    <i
+                        class="fa fa-plus fa-lg"
+                        aria-hidden="true"
+                    ></i>
+                    Thêm Mới
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div
+            class="col-md-4 col-sm-12 my-3"
+            *ngFor="let tx of mangtaixe"
+        >
+            <div class="card">
+                <div class="card-body">
+                    <div class="ml-auto pull-right btn-fontsize">
+                        <button
+                            class="btn btn-lg btn-danger"
+                            (click)="xoa(tx)"
+                        >
+                            <i
+                                class="fa fa-trash"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                        <button
+                            class="btn btn-lg btn-primary"
+                            data-toggle="modal"
+                            data-target="#loaiphong"
+                            (click)="goToEdit(tx)"
+                        >
+                            <i
+                                class="fa fa-edit"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                    </div>
+                    <div class="d-flex card-title align-items-center">
+                        <div class="text-primary">
+                            <h2>{{tx.tentaixe}}</h2>
+                        </div>
+                    </div>
+                    <div class="text-manager">Địa Chỉ : {{tx.diachi}}</div>
+                    <div class="text-manager">
+                        Ngày Sinh : {{tx.ngaysinh |date:'dd/MM/yyyy'}}
+                    </div>
+                    <div class="text-manager">Số Điện Thoại : 0{{tx.dienthoai}}</div>
+                    <div class="text-manager">CMND : {{tx.cmnd}}</div>
+                    <div class="text-manager">Tình Trạng : {{tx.tinhtrang}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="modal"
+        id="loaiphong"
+    >
+        <div
+            class="modal-dialog modal-lg"
+            role="document"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="text-center">{{title}}</h1>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label
+                                class="control-label col-sm-3 text-left"
+                                for="tentxe"
+                            >
+                                Tên tài xế
+                            </label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="tentxe"
+                                    name="tentxe"
+                                    placeholder="Tên tài xế"
+                                    [(ngModel)]="tentxe"
+                                    required
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                class="control-label col-sm-3 text-left"
+                                for="dc"
+                            >
+                                Địa Chỉ
+                            </label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="dc"
+                                    name="dc"
+                                    placeholder="Địa Chỉ"
+                                    [(ngModel)]="dc"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                class="control-label col-sm-3 text-left"
+                                for="sdt"
+                            >
+                                Số Điện Thoại
+                            </label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="sdt"
+                                    name="sdt"
+                                    placeholder="Số Điện Thoại"
+                                    [(ngModel)]="sdt"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                class="control-label col-sm-3 text-left"
+                                for="ns"
+                            >
+                                Ngày Sinh
+                            </label>
+                            <div class="col-sm-9">
+                                <div class>
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control"
+                                            a2e-datetimepicker
+                                            [(ngModel)]="ns"
+                                            [options]="a2eOptions"
+                                            name="ns"
+                                        >
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                class="control-label col-sm-3 text-left"
+                                for="cmnd"
+                            >
+                                CMND
+                            </label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="cmnd"
+                                    name="cmnd"
+                                    placeholder="CMND"
+                                    [(ngModel)]="cmnd"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                class="control-label col-sm-3 text-left"
+                                for="tinhtrang"
+                            >
+                                Tình Trạng
+                            </label>
+                            <div class="col-sm-9">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="tinhtrang"
+                                    name="tinhtrang"
+                                    placeholder="Tình Trạng"
+                                    [(ngModel)]="tinhtrang"
+                                >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        class="btn btn-primary btn-lg btn-fontsize"
+                        (click)="themmoi()"
+                        *ngIf="isThemmoi"
+                    >
+                        Thêm mới
+                    </button>
+                    <button
+                        class="btn btn-primary btn-lg btn-fontsize"
+                        (click)="chinhsua()"
+                        *ngIf="!isThemmoi"
+                    >
+                        Chỉnh sửa
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-lg btn-fontsize"
+                        data-dismiss="modal"
+                    >
+                        Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

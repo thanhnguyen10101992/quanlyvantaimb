@@ -1,0 +1,257 @@
+<div class="main-content">
+    <div class="d-flex flex-row  manager-content">
+        <div class="mr-auto">
+            <h1 class="manager-title">Báo Cáo Thu Chi</h1>
+        </div>
+
+        
+    </div>
+    <div class="row manager-select">
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Tên Khách Hàng
+            </label>
+            <div class="col-sm-8">
+                <select
+                    class="form-control"
+                    id="exampleSelect1"
+                    name="tenkh"
+                    [(ngModel)]="tenkh"
+                    (ngModelChange)="getdlsl2($event)"
+                >
+                    <option
+                        *ngFor="let kh of mangkhachhang"
+                        [ngValue]="kh"
+                    >
+                        {{kh.tenkh}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Tên Chuyến Xe
+            </label>
+            <div class="col-sm-8">
+                <select
+                    class="form-control"
+                    id="exampleSelect1"
+                    name="mcx"
+                    [(ngModel)]="mcx"
+                    (ngModelChange)="getdlsl1($event)"
+                >
+                    <option
+                        *ngFor="let chuyenxe of mangchuyenxe"
+                        [ngValue]="chuyenxe"
+                    >
+                        {{chuyenxe.mcx}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-sm-6 manager-find">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Tên Xe
+            </label>
+            <div class="col-sm-8">
+                <select
+                    class="form-control"
+                    id="exampleSelect1"
+                    name="tenxe"
+                    [(ngModel)]="tenxe"
+                    (ngModelChange)="getdsxetc($event)"
+                >
+                    <option
+                        *ngFor="let xe of mangxe"
+                        [ngValue]="xe"
+                    >
+                        {{xe.tenxe}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Loại Thu Chi
+            </label>
+            <div class="col-sm-8">
+                <select
+                    class="form-control"
+                    id="exampleSelect1"
+                    name="ltc"
+                    [(ngModel)]="ltc"
+                    (ngModelChange)="getdlsl4($event)"
+                >
+                    <option value="Thu">Thu</option>
+                    <option value="Chi">Chi</option>
+                    <option value="Chi Tài Xế">Chi Tài Xế</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-sm-6" *ngIf="ishowttx">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Tên Tài Xế
+            </label>
+            <div class="col-sm-8">
+                <select
+                    class="form-control"
+                    id="exampleSelect1"
+                    name="tentaixe"
+                    [(ngModel)]="tentaixe"
+                    (ngModelChange)="getdlsl3($event)"
+                >
+                    <option
+                        *ngFor="let tx of mangtaixe"
+                        [ngValue]="tx"
+                    >
+                        {{tx.tentaixe}}
+                    </option>
+                </select>
+            </div>
+        </div>  
+        <div class="form-group col-sm-6 manager-find">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Ngày Bắt Đầu
+            </label>
+            <div class="col-sm-8">
+                <div class>
+                    <div class="input-group">
+                        <input
+                            class="form-control manager-day"
+                            a2e-datetimepicker
+                            [(ngModel)]="nbdtim"
+                            [options]="a2eOptions"
+                            name="nbdtim"
+                            (ngModelChange)="changemodelkt($event)"
+                        >
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-6 manager-find">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Ngày Kết Thúc
+            </label>
+            <div class="col-sm-8">
+                <div class>
+                    <div class="input-group">
+                        <input
+                            class="form-control manager-day"
+                            a2e-datetimepicker
+                            [(ngModel)]="nkttim"
+                            [options]="a2eOptions"
+                            name="nkttim"
+                            (ngModelChange)="changemodelkt($event)"
+                        >
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-6 manager-find">
+            <label
+                class="control-label text-center col-sm-4 mt-4"
+                for="tenxe"
+            >
+                
+            </label>
+            <button
+                type="button"
+                class="btn btn-primary col-sm-2 pull-left control-label text-center col-sm-3 mt-3"
+                (click)="inhoadonhh()"
+            >
+                In Hóa Đơn
+            </button>
+        </div>
+    </div>
+    <div class="row" id="contenthh" #contenthh>
+        <div>
+            <label>
+                <strong>Tổng Tiền Thu:</strong>
+            </label>
+            <span class="text-danger font-weight-bold">{{tongtientt | number :".0"}} VND</span>
+            <br>
+            <label>
+                <strong>Tổng Tiền Chi:</strong>
+            </label>
+            <span class="text-danger font-weight-bold">{{tongtientc | number :".0"}} VND</span>
+            <br>
+            <label>
+                <strong>Tổng Tiền Xe Bo:</strong>
+            </label>
+            <span class="text-danger font-weight-bold">{{tongtienxebo | number :".0"}} VND</span>
+            <br>
+            <label>
+                <strong>Tổng Tiền Phát Sinh:</strong>
+            </label>
+            <span class="text-danger font-weight-bold">{{tongtienps | number :".0"}} VND</span>
+            <br>
+            <label>
+                <strong>Tổng Tiền Dư:</strong>
+            </label>
+            <span class="text-danger font-weight-bold">{{tongtiencl | number :".0"}} VND</span>
+            
+        </div>
+        <table class="table table-bordered table-manager">
+            <thead>
+                <tr>
+                    <th>Tên Khách Hàng</th>
+                    <th>Tên Hàng Hóa</th>
+                    <th>Tên Xe</th>
+                    <th>Mã Chuyến Xe</th>
+                    <th>Tên Tài Xế</th>
+                    <th>Ngay Thu Chi</th>
+                    <th>Xe Bo</th>
+                    <th>Miêu Tả CPPS</th>
+                    <th>Chi Phí Phát Sinh</th>
+                    <th>Số Tiên</th>
+                    <th>Loại Thu Chi</th>
+                    <th>Ghi Chú</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tc of mangthuchi">
+                    <td><span *ngIf="tc.idkh">{{tc.idkh.tenkh}}</span></td>
+                    <td><span *ngIf="tc.idhh">{{tc.idhh.tenhang}}</span></td>
+                    <td><span *ngIf="tc.idxe">{{tc.idxe.tenxe}}</span></td>
+                    <td><span *ngIf="tc.idcx">{{tc.idcx.mcx}}</span></td>
+                    <td><span *ngIf="tc.idtx">{{tc.idtx.tentaixe}}</span></td>
+                    <td>{{tc.ngaytc | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{tc.xebo| number :".0"}}VND</td>
+                    <td>{{tc.mtcpps}}</td>
+                    <td>{{tc.cpps| number :".0"}} VND</td>
+                    <td>{{tc.sotien| number :".0"}} VND</td>
+                    <td>{{tc.loaithuchi}}</td>
+                    <td>{{tc.gchu}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+</div>

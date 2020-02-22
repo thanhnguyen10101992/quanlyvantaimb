@@ -1,0 +1,142 @@
+<div class="main-content">
+    <div class="d-flex flex-row manager-content">
+        <div class="mr-auto col-sm-6">
+            <h1 class="manager-title">Báo Cáo Hàng Hóa</h1>
+
+        </div>
+    </div>
+    <div class="row manager-select">
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tencx"
+            >
+                Tên chuyến xe
+            </label>
+            <div class="col-sm-8">
+                <input
+                    role="button"
+                    data-toggle="dropdown"
+                    type="text"
+                    class="form-control dropdown-toggle"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    id="tencx"
+                    name="tencx"
+                    placeholder="Nhập Tên Chuyến Xe"
+                    [(ngModel)]="tencx"
+                    (keyup)="gettencx($event)"
+                >
+                <label
+                    class="dropdown-menu dropdown-menu-select dropdown-menu-right"
+                    x-placement="bottom-start"
+                >
+                    <a
+                        class="dropdown-item"
+                        *ngFor="let hhcx of mangcx"
+                        (click)="selectHHCX(hhcx)"
+                    >
+                        {{hhcx.mcx}}
+                    </a>
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-sm-6">
+            <label
+                class="control-label col-sm-4 text-left text-manager mt-3"
+                for="tenkh"
+            >
+                Tên Khách Hàng
+            </label>
+            <div class="col-sm-8">
+                <input
+                    role="button"
+                    data-toggle="dropdown"
+                    type="text"
+                    class="form-control dropdown-toggle"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    id="tenkh"
+                    name="tenkh"
+                    placeholder="Nhập Tên Khách Hàng"
+                    [(ngModel)]="tenkh"
+                    (keyup)="gettenkh($event)"
+                >
+                <label
+                    class="dropdown-menu dropdown-menu-select dropdown-menu-right"
+                    x-placement="bottom-start"
+                >
+                    <a
+                        class="dropdown-item"
+                        *ngFor="let hhkh of mangkh"
+                        (click)="selectHHKH(hhkh)"
+                    >
+                        {{hhkh.tenkh}}
+                    </a>
+                </label>
+            </div>
+        </div>
+        <!-- <div class="form-group col-sm-9 manager-find">
+            <label
+                class="control-label col-sm-3 text-left text-manager mt-3"
+                for="tenxe"
+            >
+                Ngày Xuất Phát
+            </label>
+            <div class="col-sm-6 pull-left">
+                <div class>
+                    <div class="input-group">
+                        <input
+                            class="form-control manager-day"
+                            a2e-datetimepicker
+                            [(ngModel)]="nxp"
+                            [options]="a2eOptions"
+                            name="nxp"
+                            (ngModelChange)="selectngayxp($event)"
+                        >
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <button
+                type="button"
+                class="btn btn-primary col-sm-2 pull-left"
+                (click)="selectngayxuatphat()"
+            >
+                Tìm Theo Ngày
+            </button>
+        </div> -->
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-manager">
+            <thead>
+                <tr>
+                    <th>Tên Chuyến Xe</th>
+                    <th>Khách Hàng</th>
+                    <th>Tên Hàng Hóa</th>
+                    <th>Nội Dung Hàng Hóa</th>
+                    <th>Kích Thước/ Cân Nặng</th>
+                    <th>Giá/ Phí</th>
+                    <th>Tổng Tiền</th>
+                    <th>Tình Trạng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hh of manghanghoa">
+                    <td><span *ngIf="hh.idcx">{{hh.idcx.mcx}}</span></td>
+                    <td><span *ngIf="hh.idkh">{{hh.idkh.tenkh}}</span></td>
+                    <td>{{hh.tenhang}}</td>
+                    <td>{{hh.noidunghh}}</td>
+                    <td>{{hh.ktcn}}</td>
+                    <td>{{hh.giaphi | number :".0"}} VND</td>
+                    <td>{{hh.tongtien | number :".0"}} VND</td>
+                    <td>
+                        {{ hh.tinhtrang ?"Đã Thanh Toán":"Chưa Thanh Toán" }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
