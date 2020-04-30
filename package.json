@@ -40,7 +40,7 @@
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-alpha.12",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "jsonwebtoken": "^7.4.1",
     "jspdf": "^1.4.1",
     "mongoose": "^4.11.1",
