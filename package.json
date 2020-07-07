@@ -63,7 +63,7 @@
     "@types/jspdf": "^1.1.31",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.0.1",
-    "electron": "^3.0.2",
+    "electron": "^7.2.4",
     "electron-packager": "^12.1.2",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
